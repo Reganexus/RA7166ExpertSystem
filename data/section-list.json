@@ -1,0 +1,125 @@
+[
+  {
+    "id": "section5",
+    "title": "Section 5",
+    "description": "Election and Campaign Period",
+    "offenses": [
+      "Campaigning outside of the official campaign period",
+      "Distributing campaign materials in prohibited zones",
+      "Engaging in premature campaigning activities",
+      "Failure to adhere to official guidelines for rallies and events",
+      "Using government resources for campaign activities"
+    ]
+  },
+  {
+    "id": "section6",
+    "title": "Section 6",
+    "description": "Nomination and Selection of Official Candidates",
+    "offenses": [
+      "Filing nomination papers with false information",
+      "Nomination of ineligible candidates by political parties",
+      "Failure to submit required documents by the deadline",
+      "Offering bribes or incentives for nomination support",
+      "Substituting candidates beyond the allowed period"
+    ]
+  },
+  {
+    "id": "section9",
+    "title": "Section 9",
+    "description": "Registration of Voters",
+    "offenses": [
+      "Allowing ineligible individuals to register",
+      "Failure to maintain updated voter lists",
+      "Registering voters outside of official registration periods",
+      "Denying registration without valid cause",
+      "Manipulating voter records or lists"
+    ]
+  },
+  {
+    "id": "section13",
+    "title": "Section 13",
+    "description": "Authorized Expenses of Candidates and Political Parties",
+    "offenses": [
+      "Allowing ineligible individuals to register",
+      "Failure to maintain updated voter lists",
+      "Registering voters outside of official registration periods",
+      "Denying registration without valid cause",
+      "Manipulating voter records or lists"
+    ]
+  },
+  {
+    "id": "section14",
+    "title": "Section 14",
+    "description": "Statement of Contributions and Expenditures",
+    "offenses": [
+      "Failure to Submit SOCE Within 30 Days",
+      "Non-compliance After Previous Violations",
+      "Elected Official Assumes Office Without Filing SOCE",
+      "Intentional Misreporting or Inaccurate Submission",
+      "Interference in the Conduct of Elections"
+    ]
+  },
+  {
+    "id": "section24",
+    "title": "Section 24",
+    "description": "Signature of Chairman at the Back of Every Ballot",
+    "offenses": [
+      "Failing to sign the back of ballots before distribution",
+      "Using pre-signed ballots in voting precincts",
+      "Allowing unsigned ballots to be cast in ballot boxes",
+      "Delegating ballot signing to unauthorized personnel",
+      "Failure to check ballots for proper authorization"
+    ]
+  },
+  {
+    "id": "section25",
+    "title": "Section 25",
+    "description": "Manner of Counting Votes",
+    "offenses": [
+      "Obstructed View for Watchers or the Public",
+      "Touching Election Documents by Unauthorized Persons",
+      "Table Not Cleared of Unnecessary Writing Paraphernalia",
+      "Chairman, Poll Clerk, or Third Member Not in Their Proper Positions",
+      "Failing to Simultaneously Accomplish the Election Return and Tally Board",
+      "Allowing Unauthorized Persons to Interfere with Counting",
+      "Violation of Physical Proximity Rules",
+      "Disregard of Proper Procedures During Counting"
+    ]
+  },
+  {
+    "id": "section31",
+    "title": "Section 31",
+    "description": "Per Diems of Election Inspectors and Other Officials",
+    "offenses": [
+      "Delayed Payments Without Justifiable Reason",
+      "Failure to Pay the Correct Amount",
+      "Non-payment Despite Available Funds",
+      "Indirect Responsibility for Payment Delays"
+    ]
+  },
+  {
+    "id": "section32",
+    "title": "Section 32",
+    "description": "Who May Bear Firearms",
+    "offenses": [
+      "Carrying Firearms Without COMELEC Authorization",
+      "Law Enforcement Officer Not in Full Uniform",
+      "Law Enforcement Officer Off Duty or Outside Designated Area",
+      "Unauthorized Person Using a Public Vehicle to Transport Firearms",
+      "Firearm Licenses Issued During the Election Period",
+      "Failure to Obtain Written Authorization from COMELEC"
+    ]
+  },
+  {
+    "id": "section33",
+    "title": "Section 33",
+    "description": "Security Personnel and Bodyguards",
+    "offenses": [
+      "Unauthorized Use of Security Personnel or Bodyguards",
+      "Failure to Apply for COMELEC Authorization",
+      "Non-compliance with Uniform Requirement",
+      "Security Threat No Longer Exists",
+      "Unauthorized Law Enforcement Officers"
+    ]
+  }
+]
