@@ -2,6 +2,7 @@ import Image from 'next/image';
 import FavIcon from '@/app/favicon.ico';
 import sectionList from '@/data/section-list.json';
 import { RiContractLeftLine, RiContractRightLine, RiQuestionLine, RiCloseFill } from "react-icons/ri";
+import Footer from '../Footer';
 
 type SidebarProps = {
   collapsed: boolean;
@@ -76,8 +77,7 @@ export default function Sidebar({
       )}
 
       <hr
-        className={`border-2 border-white/25 my-4 rounded-full 
-    ${collapsed ? 'w-12' : 'w-full'}`}
+        className={`border-2 border-white/25 my-4 rounded-full ${collapsed ? 'w-12' : 'w-full'}`}
       />
 
 
@@ -103,6 +103,10 @@ export default function Sidebar({
           </button>
         ))}
       </div>
+
+      {
+        !collapsed && <Footer />
+      }
     </aside>
   );
 }
