@@ -7,6 +7,9 @@ export const section24 = {
     answer: string,
     state: { falseCounter?: number } = {}
   ) => {
+    const formatPenalty = (items: string[]) =>
+      `Penalty:\n${items.map(p => `• ${p}`).join("\n")}`;
+
     let falseCounter = state.falseCounter ?? 0;
 
     switch (step) {
@@ -27,14 +30,17 @@ export const section24 = {
           state: { falseCounter },
         };
 
-      case 3:
-        const penaltyBase =
-          "Penalty: 1-6 years imprisonment is not subject to probation<br>" +
-          "Penalty: Sentenced to suffer disqualification to hold public office and deprivation of the right of suffrage.<br>" +
-          "Penalty: Sentenced to pay a fine not less than ten thousand pesos (10,000) if found guilty.";
-        const penaltyWithDeportation =
-          penaltyBase +
-          "<br>Penalty: Sentenced to deportation which shall be enforced after the prison term has been served.";
+      case 3: {
+        const penalties = [
+          "1–6 years imprisonment (not subject to probation)",
+          "Disqualification to hold public office and deprivation of the right of suffrage",
+          "Fine not less than ten thousand pesos (₱10,000) if found guilty"
+        ];
+
+        const extendedPenalties = [
+          ...penalties,
+          "Deportation (to be enforced after the prison term has been served)"
+        ];
 
         if (falseCounter >= 2) {
           return {
@@ -46,11 +52,14 @@ export const section24 = {
         }
 
         return {
-          question: answer === "yes" ? penaltyWithDeportation : penaltyBase,
+          question: answer === "yes"
+            ? formatPenalty(extendedPenalties)
+            : formatPenalty(penalties),
           nextStep: null,
           state,
           done: true,
         };
+      }
 
       default:
         return {

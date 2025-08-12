@@ -11,12 +11,26 @@ export const section33 = {
       isThreatened?: boolean;
     } = {}
   ) => {
+    const formatPenalty = (description: string, penalties: string[]) =>
+      `Penalty: ${description}\n${penalties.map(p => `• ${p}`).join("\n")}`;
+
     const penalty = (msg: string) => ({
       question: msg,
       nextStep: null,
       state,
       done: true,
     });
+
+    const standardPenalties = [
+      "1–6 years imprisonment (not subject to probation)",
+      "Loss of right to vote",
+      "Disqualification from public office"
+    ];
+
+    const deportationPenalties = [
+      ...standardPenalties,
+      "Deportation (to be enforced after the prison term has been served)"
+    ];
 
     switch (step) {
       case 1:
@@ -31,12 +45,11 @@ export const section33 = {
 
       case 2:
         return answer === "yes"
-          ? penalty(`
-              <strong>Penalty for Foreign Involvement in Elections:</strong><br>
-              <strong>Imprisonment:</strong> One to six years, followed by deportation.<br>
-              <strong>Deportation:</strong> Enforced after sentence.
-            `)
-          : penalty("No Penalty.");
+          ? penalty(formatPenalty(
+              "Foreign involvement in elections.",
+              deportationPenalties
+            ))
+          : penalty("No Penalty");
 
       case 3:
         state.isCandidate = answer === "yes";
@@ -75,17 +88,15 @@ export const section33 = {
               nextStep: 7,
               state,
             }
-          : penalty("No Penalty.");
+          : penalty("No Penalty");
 
       case 7:
         return answer === "yes"
-          ? penalty("No Penalty.")
-          : penalty(`
-              <strong>Penalty for Unauthorized Security Personnel:</strong><br>
-              <strong>Imprisonment:</strong> One to six years.<br>
-              <strong>Disqualification:</strong> Loss of right to hold office.<br>
-              <strong>Voting Rights:</strong> Revoked.
-            `);
+          ? penalty("No Penalty")
+          : penalty(formatPenalty(
+              "Unauthorized security personnel for a candidate.",
+              standardPenalties
+            ));
 
       case 10:
         state.isLawEnforcer = answer === "yes";
@@ -96,7 +107,7 @@ export const section33 = {
               nextStep: 11,
               state,
             }
-          : penalty("No Penalty.");
+          : penalty("No Penalty");
 
       case 11:
         return answer === "yes"
@@ -106,7 +117,7 @@ export const section33 = {
               nextStep: 12,
               state,
             }
-          : penalty("No Penalty.");
+          : penalty("No Penalty");
 
       case 12:
         return answer === "yes"
@@ -116,22 +127,18 @@ export const section33 = {
               nextStep: 13,
               state,
             }
-          : penalty(`
-              <strong>Penalty for Misuse of Law Enforcement as Security Personnel:</strong><br>
-              <strong>Imprisonment:</strong> One to six years.<br>
-              <strong>Disqualification:</strong> Permanent from public service.<br>
-              <strong>Voting Rights:</strong> Revoked.
-            `);
+          : penalty(formatPenalty(
+              "Misuse of law enforcement as security personnel without proper identification.",
+              standardPenalties
+            ));
 
       case 13:
         return answer === "yes"
-          ? penalty("No Penalty.")
-          : penalty(`
-              <strong>Penalty for Misuse of Law Enforcement as Security Personnel:</strong><br>
-              <strong>Imprisonment:</strong> One to six years.<br>
-              <strong>Disqualification:</strong> Permanent from public service.<br>
-              <strong>Voting Rights:</strong> Revoked.
-            `);
+          ? penalty("No Penalty")
+          : penalty(formatPenalty(
+              "Misuse of law enforcement as security personnel without proper identification.",
+              standardPenalties
+            ));
 
       default:
         return {

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Merriweather_Sans } from "next/font/google";
+import { Lato } from "next/font/google";
 import "./globals.css";
 
-const merritweather = Merriweather_Sans({
-  variable: "--font-merritweather-sans",
+const lato = Lato({
   subsets: ["latin"],
+  weight: ["100", "300", "400", "700", "900"], 
+  variable: "--font-lato", 
 });
 
 export const metadata: Metadata = {
@@ -14,14 +15,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${merritweather.variable} antialiased`}
-      >
+    <html lang="en" className={`${lato.variable}`}>
+      <body className="antialiased font-sans">
         {children}
       </body>
     </html>

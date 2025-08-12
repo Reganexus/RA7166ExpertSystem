@@ -1,17 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0d1321;
+  --base-1: #0d1321;
+  --base-2: #3e5c76;
+  --base-3: #748cab;
+  --base-4: #030712;
+  --foreground: #f0ebd8;
+  --sidebar-width: 40%;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: white;
 }
 
-p {
-  font-family: "Merriweather", serif;
+.sidebar-grid {
+  grid-template-columns: var(--sidebar-width) 1fr;
+  transition: grid-template-columns 0.3s ease;
 }

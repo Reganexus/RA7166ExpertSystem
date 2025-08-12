@@ -6,6 +6,10 @@ export const section14 = {
     answer: string,
     state: Record<string, any> = {}
   ) => {
+    // Helper function for penalty formatting
+    const formatPenalty = (items: string[]) =>
+      `Penalty:\n${items.map(p => `• ${p}`).join("\n")}`;
+
     switch (step) {
       case 1:
         return {
@@ -39,7 +43,7 @@ export const section14 = {
       case 4:
         return {
           question: answer === "yes"
-            ? "Penalty: An administrative offense, fine between P1,000 and P30,000."
+            ? formatPenalty(["Administrative offense", "Fine between ₱1,000 and ₱30,000"])
             : "Has the elected official submitted SOCE after 30 days of the election?",
           nextStep: answer === "yes" ? null : 6,
           state,
@@ -60,7 +64,7 @@ export const section14 = {
         return {
           question: answer === "yes"
             ? "No Penalty"
-            : "Penalty: An administrative offense, fine between P1,000 and P30,000.",
+            : formatPenalty(["Administrative offense", "Fine between ₱1,000 and ₱30,000"]),
           nextStep: null,
           state,
           done: true,
@@ -69,8 +73,8 @@ export const section14 = {
       case 7:
         return {
           question: answer === "yes"
-            ? "Penalty: Fine between P2,000 and P60,000."
-            : "Penalty: An administrative offense, fine between P1,000 and P30,000.",
+            ? formatPenalty(["Fine between ₱2,000 and ₱60,000"])
+            : formatPenalty(["Administrative offense", "Fine between ₱1,000 and ₱30,000"]),
           nextStep: null,
           state,
           done: true,

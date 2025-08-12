@@ -34,13 +34,16 @@ export const section6 = {
         };
 
       case 3: {
-        const basePenalty =
-          "Penalty: 1-6 years imprisonment is not subject to probation<br>" +
-          "Penalty: Sentenced to suffer disqualification to hold public office and deprivation of the right of suffrage.<br>" +
-          "Penalty: Sentenced to pay a fine not less than ten thousand pesos (10,000) if found guilty.";
+        const penalties = [
+          "1–6 years imprisonment (not subject to probation)",
+          "Disqualification to hold public office and deprivation of the right of suffrage",
+          "Fine not less than ten thousand pesos (₱10,000) if found guilty"
+        ];
 
-        const extendedPenalty = basePenalty + "<br>" +
-          "Penalty: Sentenced to deportation which shall be enforced after the prison term has been served.";
+        const extendedPenalties = [
+          ...penalties,
+          "Deportation (to be enforced after the prison term has been served)"
+        ];
 
         if (falseCounter > 0) {
           return {
@@ -51,8 +54,12 @@ export const section6 = {
           };
         }
 
+        const penaltyList = (answer === "yes" ? extendedPenalties : penalties)
+          .map(p => `• ${p}`)
+          .join("\n");
+
         return {
-          question: answer === "yes" ? extendedPenalty : basePenalty,
+          question: `Penalty:\n${penaltyList}`,
           nextStep: null,
           state,
           done: true,

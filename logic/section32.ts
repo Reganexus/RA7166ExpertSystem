@@ -10,12 +10,26 @@ export const section32 = {
       isPrivate?: boolean;
     } = {}
   ) => {
+    const formatPenalty = (description: string, penalties: string[]) =>
+      `Penalty: ${description}\n${penalties.map(p => `• ${p}`).join("\n")}`;
+
     const penalty = (msg: string) => ({
       question: msg,
       nextStep: null,
       state,
       done: true,
     });
+
+    const standardPenalties = [
+      "1–6 years imprisonment (not subject to probation)",
+      "Loss of right to vote",
+      "Disqualification from public office"
+    ];
+
+    const deportationPenalty = [
+      ...standardPenalties,
+      "Deportation (to be enforced after the prison term has been served)"
+    ];
 
     switch (step) {
       case 1:
@@ -30,9 +44,10 @@ export const section32 = {
 
       case 2:
         return answer === "yes"
-          ? penalty(
-              "Penalty: Guilty of violating Section 24 of the Omnibus Election Code.<br>Imprisonment: One to six years, sentenced to deportation which shall be enforced after the prison term has been served."
-            )
+          ? penalty(formatPenalty(
+              "Guilty of violating Section 24 of the Omnibus Election Code.",
+              deportationPenalty
+            ))
           : penalty("No Penalty");
 
       case 3:
@@ -77,9 +92,10 @@ export const section32 = {
               nextStep: 10,
               state,
             }
-          : penalty(
-              "Penalty: Imprisonment: One to six years, loss of right to vote, disqualification from public office."
-            );
+          : penalty(formatPenalty(
+              "Possession of an unregistered firearm during the election period.",
+              standardPenalties
+            ));
 
       case 7:
         state.isLawEnforcement = answer === "yes";
@@ -114,17 +130,19 @@ export const section32 = {
 
       case 9:
         return answer === "yes"
-          ? penalty(
-              "Penalty: Imprisonment: One to six years due to bringing a firearm while off-duty, loss of current position or future roles in public service, loss of right to vote."
-            )
+          ? penalty(formatPenalty(
+              "Bringing a firearm while off-duty in public places.",
+              standardPenalties
+            ))
           : penalty("No Penalty");
 
       case 10:
         return answer === "yes"
           ? penalty("No Penalty")
-          : penalty(
-              "Penalty: Imprisonment: One to six years due to lack of COMELEC authorization, loss of current position or future roles in public service, loss of right to vote."
-            );
+          : penalty(formatPenalty(
+              "Possession of a firearm without COMELEC authorization.",
+              standardPenalties
+            ));
 
       case 11:
         state.isPrivate = answer === "yes";
@@ -150,16 +168,18 @@ export const section32 = {
               nextStep: 10,
               state,
             }
-          : penalty(
-              "Penalty: Imprisonment: One to six years due to lack of proper identification, loss of current position or future roles in public service, loss of right to vote."
-            );
+          : penalty(formatPenalty(
+              "Lack of proper identification while carrying a firearm.",
+              standardPenalties
+            ));
 
       case 13:
         return answer === "yes"
           ? penalty("No Penalty")
-          : penalty(
-              "Penalty: Imprisonment: One to six years due to transporting a firearm without authorization, loss of current position or future roles in public service, loss of right to vote."
-            );
+          : penalty(formatPenalty(
+              "Transporting a firearm without COMELEC authorization.",
+              standardPenalties
+            ));
 
       case 14:
         return answer === "yes"
@@ -174,9 +194,10 @@ export const section32 = {
       case 15:
         return answer === "yes"
           ? penalty("No Penalty")
-          : penalty(
-              "Penalty: Imprisonment: One to six years due to bringing a firearm in public places without authorization, loss of current position or future roles in public service, loss of right to vote."
-            );
+          : penalty(formatPenalty(
+              "Bringing a firearm in public places without COMELEC authorization.",
+              standardPenalties
+            ));
 
       default:
         return {

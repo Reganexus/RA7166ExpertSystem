@@ -10,6 +10,9 @@ export const section31 = {
       official?: boolean;
     } = {}
   ) => {
+    const formatPenalty = (description: string, penalties: string[]) =>
+      `Penalty: ${description}\n${penalties.map(p => `• ${p}`).join("\n")}`;
+
     const penalty = (msg: string) => ({
       question: msg,
       nextStep: null,
@@ -17,9 +20,26 @@ export const section31 = {
       done: true,
     });
 
-    const penaltyWrongPerDiem = `Penalty: Guilty of violating Sections 23 and 24 of the Omnibus Election Code due to incorrect per diem rates. Consequences include imprisonment for a term of 1 to 6 years, disqualification from holding public office, and the loss of voting rights.`;
+    const standardPenalties = [
+      "1–6 years imprisonment (not subject to probation)",
+      "Disqualification from public office",
+      "Loss of voting rights"
+    ];
 
-    const penaltyDelayedPayment = `Penalty: Guilty of violating Sections 23 and 24 of the Omnibus Election Code for unjustifiable delays in payment of per diems when funds are available. Consequences include imprisonment for a term of 1 to 6 years, disqualification from holding public office, and the loss of voting rights.`;
+    const deportationPenalty = [
+      ...standardPenalties,
+      "Deportation (to be enforced after the prison term has been served)"
+    ];
+
+    const penaltyWrongPerDiem = formatPenalty(
+      "Guilty of violating Sections 23 and 24 of the Omnibus Election Code due to incorrect per diem rates.",
+      standardPenalties
+    );
+
+    const penaltyDelayedPayment = formatPenalty(
+      "Guilty of violating Sections 23 and 24 of the Omnibus Election Code for unjustifiable delays in payment of per diems when funds are available.",
+      standardPenalties
+    );
 
     switch (step) {
       case 1:
@@ -34,9 +54,10 @@ export const section31 = {
 
       case 2:
         return answer === "yes"
-          ? penalty(
-              `Penalty: Guilty of violating Section 24 of the Omnibus Election Code.<br>Imprisonment: 1 to 6 years, sentenced to deportation which shall be enforced after the prison term has been served.`
-            )
+          ? penalty(formatPenalty(
+              "Guilty of violating Section 24 of the Omnibus Election Code.",
+              deportationPenalty
+            ))
           : penalty("No Penalty");
 
       case 3:
